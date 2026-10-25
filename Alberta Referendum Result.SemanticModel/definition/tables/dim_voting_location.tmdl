@@ -1,0 +1,67 @@
+table dim_voting_location
+	lineageTag: 91784352-178a-4a48-8c0d-949ac8d262c9
+
+	column LocationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 7878ff3b-21ab-4cc1-9299-eb4b3efad634
+		summarizeBy: count
+		sourceColumn: LocationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DivisionCode
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c54db50-edff-4899-952b-45dc3d16e9ea
+		summarizeBy: none
+		sourceColumn: DivisionCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column VoteTypeCode
+		dataType: string
+		lineageTag: 9e519835-902c-42e0-ba15-bfa6c88d9e24
+		summarizeBy: none
+		sourceColumn: VoteTypeCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column VoteType
+		dataType: string
+		lineageTag: a059dd47-7a2f-4d63-8498-ed7ade381e75
+		summarizeBy: none
+		sourceColumn: VoteType
+		sortByColumn: VoteTypeOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationName
+		dataType: string
+		lineageTag: 0db0b4b0-21eb-4cf8-bc5b-93a12b9ab80f
+		summarizeBy: none
+		sourceColumn: LocationName
+
+		annotation SummarizationSetBy = Automatic
+
+	column VoteTypeOrder = SWITCH(dim_voting_location[VoteTypeCode], "ORD", 1, "ADV", 2, "VBMHQ", 3, "MOB", 4, 5)
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ebfe8153-a958-4899-84d2-9c8058782dd7
+		summarizeBy: none
+
+	partition dim_voting_location = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dim_voting_location.csv"),[Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"LocationKey", Int64.Type}, {"DivisionCode", Int64.Type}, {"VoteTypeCode", type text}, {"VoteType", type text}, {"LocationName", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

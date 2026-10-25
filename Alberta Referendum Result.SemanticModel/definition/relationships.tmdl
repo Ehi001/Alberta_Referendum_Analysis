@@ -1,0 +1,20 @@
+relationship AutoDetected_a505c8d8-714a-4f9c-a4d8-ac894c58c140
+	fromColumn: fact_results_by_division.QuestionNo
+	toColumn: dim_question.QuestionNo
+
+relationship AutoDetected_1bd90b46-0cd0-4efa-8c57-0a3740508fdd
+	fromColumn: fact_results_by_location.QuestionNo
+	toColumn: dim_question.QuestionNo
+
+relationship AutoDetected_ea967fd3-6f5d-436f-9dc0-03f0e4e38ce4
+	fromColumn: fact_results_by_division.DivisionCode
+	toColumn: dim_electoral_division.DivisionCode
+
+relationship AutoDetected_c1fc41bf-4d29-4fee-bb77-25356c481ab0
+	fromColumn: fact_results_by_location.DivisionCode
+	toColumn: dim_electoral_division.DivisionCode
+
+relationship AutoDetected_af3714de-7b6f-4f2f-a8fa-bf14f361f02e
+	fromColumn: fact_results_by_location.LocationKey
+	toColumn: dim_voting_location.LocationKey
+

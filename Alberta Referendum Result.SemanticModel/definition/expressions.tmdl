@@ -1,0 +1,7 @@
+expression DataFolder = "C:\alberta-referendum-analysis\data\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 63181787-d02e-4582-96b2-5e13dc7104c9
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

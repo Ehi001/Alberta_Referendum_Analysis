@@ -1,0 +1,259 @@
+table 'Key Measures'
+	lineageTag: d8ee32cb-2c9f-45e6-a14d-91e45beb436f
+
+	measure 'Yes Votes' = SUM(fact_results_by_location[YesVotes])
+		formatString: #,0
+		displayFolder: 1 Votes
+		lineageTag: 4e5b9beb-1f56-4ecd-9934-7520ba67bd8c
+
+	measure 'No Votes' = SUM(fact_results_by_location[NoVotes])
+		formatString: #,0
+		displayFolder: 1 Votes
+		lineageTag: 2896705b-9032-4b04-af6f-edd94377ad61
+
+	measure 'Total Votes' = [Yes Votes] + [No Votes]
+		formatString: #,0
+		displayFolder: 1 Votes
+		lineageTag: 645f0fee-3bb5-4bfe-81b7-08309f279f41
+
+	measure 'Yes %' = DIVIDE([Yes Votes], [Total Votes])
+		formatString: 0.0%
+		displayFolder: 1 Votes
+		lineageTag: c4480880-8a27-4220-8bd7-db8fa73222f9
+
+	measure 'No %' = DIVIDE([No Votes], [Total Votes])
+		formatString: 0.0%
+		displayFolder: 1 Votes
+		lineageTag: acd31acf-f3fe-4e31-bd06-f3c240e42bb3
+
+	measure 'Yes % (Q1-9)' = CALCULATE([Yes %], KEEPFILTERS(dim_question[QuestionNo] <> 10))
+		formatString: 0.0%
+		displayFolder: 1 Votes
+		lineageTag: 8176a23e-c07e-45be-8d17-0bbc368ec309
+
+	measure 'Margin (pts)' = ([Yes %] - [No %]) * 100
+		formatString: +0.0 \p\t\s;-0.0 \p\t\s;0.0 \p\t\s
+		displayFolder: 1 Votes
+		lineageTag: 79d3822e-3dc5-493d-b672-fa4f34d1fe89
+
+	measure 'Vote Margin' = [Yes Votes] - [No Votes]
+		formatString: +#,0;-#,0;0
+		displayFolder: 1 Votes
+		lineageTag: 4ea430c2-0f53-44aa-8dc3-7e293a28c9d0
+
+	measure Result = IF([Total Votes] = 0, BLANK(), IF(SELECTEDVALUE(dim_question[QuestionNo]) = 10, IF([Yes Votes] > [No Votes], "Remain won", "Option 2 won"), IF([Yes Votes] > [No Votes], "Passed", "Failed")))
+		displayFolder: 1 Votes
+		lineageTag: 774c7afa-cb6c-4c54-a0d3-b07fb96e111c
+
+	measure 'Divisions Won by Yes' = COUNTROWS(FILTER(VALUES(dim_electoral_division[DivisionCode]), [Yes Votes] > [No Votes]))
+		formatString: 0
+		displayFolder: 1 Votes
+		lineageTag: 13a4cc55-2a06-4dbf-a832-f7afbe492c33
+
+	measure 'Questions Passed (Q1-9)' = COUNTROWS(FILTER(VALUES(dim_question[QuestionNo]), dim_question[QuestionNo] <> 10 && [Yes Votes] > [No Votes]))
+		formatString: 0
+		displayFolder: 1 Votes
+		lineageTag: 31fb3dcd-25a9-4221-9e2c-f77cda202361
+
+	measure 'Locations Reporting %' = DIVIDE(SUM(dim_electoral_division[VotingLocationsReporting]), SUM(dim_electoral_division[VotingLocationsTotal]))
+		formatString: 0.0%
+		displayFolder: 1 Votes
+		lineageTag: 79b6aba7-ca35-409a-8613-dc0ad9fd627a
+
+	measure 'Ballot Roll-off vs Q10' = [Q10 Ballots] - [Total Votes]
+		formatString: #,0
+		displayFolder: 1 Votes
+		lineageTag: e6baf2ab-0a3e-4406-ae6d-4e201b3e4c86
+
+	measure 'Q10 Remain Votes' = CALCULATE([Yes Votes], dim_question[QuestionNo] = 10)
+		formatString: #,0
+		displayFolder: 2 Question 10
+		lineageTag: c0a5a535-dd9b-4bc0-8da8-c90f36875444
+
+	measure 'Q10 Option 2 Votes' = CALCULATE([No Votes], dim_question[QuestionNo] = 10)
+		formatString: #,0
+		displayFolder: 2 Question 10
+		lineageTag: 0d8a4c4c-81fe-4928-bccf-ed08444cb8d6
+
+	measure 'Q10 Ballots' = CALCULATE([Total Votes], dim_question[QuestionNo] = 10)
+		formatString: #,0
+		displayFolder: 2 Question 10
+		lineageTag: 068a251f-3000-4846-85b3-78555ef033af
+
+	measure 'Q10 Remain %' = CALCULATE([Yes %], dim_question[QuestionNo] = 10)
+		formatString: 0.0%
+		displayFolder: 2 Question 10
+		lineageTag: 794a4fe2-478c-49f4-bd82-fd86cd31a0a7
+
+	measure 'Q10 Option 2 %' = CALCULATE([No %], dim_question[QuestionNo] = 10)
+		formatString: 0.0%
+		displayFolder: 2 Question 10
+		lineageTag: dbae3367-f0c0-4b2c-b411-36fb6ea1f8b9
+
+	measure 'Q10 Remain Margin' = [Q10 Remain Votes] - [Q10 Option 2 Votes]
+		formatString: #,0
+		displayFolder: 2 Question 10
+		lineageTag: e0737182-af1c-4709-92b9-97fe3bd20c22
+
+	measure 'Divisions Favouring Remain' = CALCULATE(COUNTROWS(FILTER(VALUES(dim_electoral_division[DivisionCode]), [Yes Votes] > [No Votes])), dim_question[QuestionNo] = 10)
+		formatString: 0
+		displayFolder: 2 Question 10
+		lineageTag: 3659c7a6-5ffe-493f-a4db-b6c6a88c90c0
+
+	measure 'Divisions Favouring Option 2' = CALCULATE(COUNTROWS(FILTER(VALUES(dim_electoral_division[DivisionCode]), [No Votes] > [Yes Votes])), dim_question[QuestionNo] = 10)
+		formatString: 0
+		displayFolder: 2 Question 10
+		lineageTag: 28a9cf87-e124-4a0b-ae96-4a024b3f5793
+
+	measure 'Strongest Option 2 Division' = MAXX(TOPN(1, ALL(dim_electoral_division[DivisionName]), [Q10 Option 2 %], DESC), dim_electoral_division[DivisionName])
+		displayFolder: 2 Question 10
+		lineageTag: 4ccc4f7f-c5db-4432-9526-cc8fff3c8c16
+
+	measure 'Strongest Option 2 Share' = MAXX(TOPN(1, ALL(dim_electoral_division[DivisionName]), [Q10 Option 2 %], DESC), [Q10 Option 2 %])
+		formatString: 0.0%
+		displayFolder: 2 Question 10
+		lineageTag: 98b1a734-c72a-4d08-badb-6777f2c4bada
+
+	measure 'Yes % Calgary (Q1-9)' = CALCULATE([Yes % (Q1-9)], dim_electoral_division[Area] = "Calgary")
+		formatString: 0.0%
+		displayFolder: 3 Regions
+		lineageTag: da44a577-7b46-4144-9d6f-811a94fcb16d
+
+	measure 'Yes % Edmonton (Q1-9)' = CALCULATE([Yes % (Q1-9)], dim_electoral_division[Area] = "Edmonton")
+		formatString: 0.0%
+		displayFolder: 3 Regions
+		lineageTag: d175d91c-5b47-44cd-afe3-2fdcb6d55a67
+
+	measure 'Yes % Rest of Alberta (Q1-9)' = CALCULATE([Yes % (Q1-9)], dim_electoral_division[Area] = "Rest of Alberta")
+		formatString: 0.0%
+		displayFolder: 3 Regions
+		lineageTag: 6d30418c-ce70-40b7-a7f0-4e38e89ba438
+
+	measure 'Urban-Rural Gap (pts)' = ([Yes % Rest of Alberta (Q1-9)] - CALCULATE([Yes % (Q1-9)], dim_electoral_division[Area] IN {"Calgary", "Edmonton"})) * 100
+		formatString: +0.0 \p\t\s;-0.0 \p\t\s;0.0 \p\t\s
+		displayFolder: 3 Regions
+		lineageTag: a5e8de11-7c60-4779-9f99-83603bbb7f38
+
+	measure 'Ballot Share Outside Cities' = DIVIDE(CALCULATE([Q10 Ballots], dim_electoral_division[Area] = "Rest of Alberta"), CALCULATE([Q10 Ballots], ALL(dim_electoral_division)))
+		formatString: 0.0%
+		displayFolder: 3 Regions
+		lineageTag: e28ecc6f-df74-47dd-a703-4fb0038b82a6
+
+	measure 'Q10 Ballot Share' = DIVIDE([Q10 Ballots], CALCULATE([Q10 Ballots], ALL(dim_voting_location)))
+		formatString: 0.0%
+		displayFolder: 4 Vote Method
+		lineageTag: 9c9a69b0-2594-4f2f-9212-b1481962872b
+
+	measure 'Election Day Share' = CALCULATE([Q10 Ballot Share], dim_voting_location[VoteTypeCode] = "ORD")
+		formatString: 0.0%
+		displayFolder: 4 Vote Method
+		lineageTag: 0bb12b65-afe3-4959-bccc-46006a7dd4fa
+
+	measure 'Advance Share' = CALCULATE([Q10 Ballot Share], dim_voting_location[VoteTypeCode] = "ADV")
+		formatString: 0.0%
+		displayFolder: 4 Vote Method
+		lineageTag: 9b93f317-793f-4c0c-b805-01ac4c89bd36
+
+	measure 'Special Ballot Share' = CALCULATE([Q10 Ballot Share], dim_voting_location[VoteTypeCode] = "VBMHQ")
+		formatString: 0.0%
+		displayFolder: 4 Vote Method
+		lineageTag: 715427e4-530b-4edc-8c3c-feda5f93c56c
+
+	measure 'Special vs Election Day Gap Q10 (pts)' = (CALCULATE([Q10 Remain %], dim_voting_location[VoteTypeCode] = "VBMHQ") - CALCULATE([Q10 Remain %], dim_voting_location[VoteTypeCode] = "ORD")) * 100
+		formatString: +0.0 \p\t\s;-0.0 \p\t\s;0.0 \p\t\s
+		displayFolder: 4 Vote Method
+		lineageTag: 5815fb26-a6e5-472c-bf81-051d7ed0d10d
+
+	measure 'Special vs Election Day Gap Q1-9 (pts)' = (CALCULATE([Yes % (Q1-9)], dim_voting_location[VoteTypeCode] = "VBMHQ") - CALCULATE([Yes % (Q1-9)], dim_voting_location[VoteTypeCode] = "ORD")) * 100
+		formatString: +0.0 \p\t\s;-0.0 \p\t\s;0.0 \p\t\s
+		displayFolder: 4 Vote Method
+		lineageTag: 38056cba-d6fd-4d39-aaf8-8b3f3975dc63
+
+	measure 'Separation Correlation' = VAR t = ADDCOLUMNS(VALUES(dim_electoral_division[DivisionCode]), "@x", [Q10 Option 2 %], "@y", [Yes % (Q1-9)]) VAR mx = AVERAGEX(t, [@x]) VAR my = AVERAGEX(t, [@y]) VAR c = SUMX(t, ([@x] - mx) * ([@y] - my)) VAR sx = SQRT(SUMX(t, ([@x] - mx) ^ 2)) VAR sy = SQRT(SUMX(t, ([@y] - my) ^ 2)) RETURN DIVIDE(c, sx * sy)
+		formatString: 0.00
+		displayFolder: 5 Explorer
+		lineageTag: 3db6dd8b-563d-4117-b3a0-26e9af9a68c2
+
+	measure 'Most Supportive Division' = MAXX(TOPN(1, VALUES(dim_electoral_division[DivisionName]), [Yes % (Q1-9)], DESC), dim_electoral_division[DivisionName])
+		displayFolder: 5 Explorer
+		lineageTag: 110ffac7-4a97-4dcf-9084-25a003ad2e44
+
+	measure 'Least Supportive Division' = MAXX(TOPN(1, FILTER(VALUES(dim_electoral_division[DivisionName]), NOT ISBLANK([Yes % (Q1-9)])), [Yes % (Q1-9)], ASC), dim_electoral_division[DivisionName])
+		displayFolder: 5 Explorer
+		lineageTag: 1e22b328-6724-4e0c-90ef-1dae75ede496
+
+	measure 'Closest Division' = MAXX(TOPN(1, FILTER(VALUES(dim_electoral_division[DivisionName]), NOT ISBLANK([Yes % (Q1-9)])), ABS([Yes % (Q1-9)] - 0.5), ASC), dim_electoral_division[DivisionName])
+		displayFolder: 5 Explorer
+		lineageTag: 626fdc88-5fbd-4353-a748-763e52989e4b
+
+	measure 'Selected Question' = IF(HASONEVALUE(dim_question[QLabel]), VALUES(dim_question[QLabel]), "Questions 1-9 combined")
+		displayFolder: 5 Explorer
+		lineageTag: b4da6c03-ac00-4a3c-a0f4-823947d9bb01
+
+	measure 'Note Remain' = FORMAT([Q10 Remain Margin], "#,0") & " vote margin"
+		displayFolder: 6 Notes
+		lineageTag: b42ab646-a952-495f-a3f0-e2fe6bec3acb
+
+	measure 'Note Option 2' = FORMAT([Q10 Option 2 Votes], "#,0") & " votes"
+		displayFolder: 6 Notes
+		lineageTag: ed57049d-256a-4c37-9711-b630105d7ddb
+
+	measure 'Note Divisions' = "of " & COUNTROWS(ALL(dim_electoral_division)) & " electoral divisions"
+		displayFolder: 6 Notes
+		lineageTag: 2550736a-7c31-45cf-8328-1a0004664006
+
+	measure 'Note Strongest Option 2' = FORMAT([Strongest Option 2 Share], "0.0%") & " chose Option 2"
+		displayFolder: 6 Notes
+		lineageTag: 4c3e4aa1-c780-470e-94e5-05b1713f55df
+
+	measure 'Note Most Supportive' = FORMAT(MAXX(TOPN(1, VALUES(dim_electoral_division[DivisionName]), [Yes % (Q1-9)], DESC), [Yes % (Q1-9)]), "0.0%") & " Yes"
+		displayFolder: 6 Notes
+		lineageTag: c9b91f25-0888-42cd-81f1-f30478463eea
+
+	measure 'Note Closest' = FORMAT(MAXX(TOPN(1, FILTER(VALUES(dim_electoral_division[DivisionName]), NOT ISBLANK([Yes % (Q1-9)])), ABS([Yes % (Q1-9)] - 0.5), ASC), [Yes % (Q1-9)]), "0.0%") & " Yes"
+		displayFolder: 6 Notes
+		lineageTag: a28a7d49-aabe-411d-8f75-b7dd6674225b
+
+	measure 'Note Selected Question' = [Selected Question]
+		displayFolder: 6 Notes
+		lineageTag: bae9ffbf-2c8c-4af1-ad47-46cda8cd6d09
+
+	measure 'Insight 1' = "Alberta stays. Remain won " & FORMAT([Q10 Remain %], "0.0%") & " to " & FORMAT([Q10 Option 2 %], "0.0%") & ", a margin of " & FORMAT([Q10 Remain Margin], "#,0") & " votes. Only " & [Divisions Favouring Option 2] & " of " & COUNTROWS(dim_electoral_division) & " divisions favoured starting the separation process, led by " & [Strongest Option 2 Division] & " (" & FORMAT([Strongest Option 2 Share], "0.0%") & ")."
+		displayFolder: 7 Insights
+		lineageTag: 9255136d-6d03-4499-a6ce-c720948a233c
+
+	measure 'Insight 2' = VAR t = FILTER(ALL(dim_question[QuestionNo], dim_question[ShortName]), dim_question[QuestionNo] <> 10) VAR hi = TOPN(1, t, [Yes %], DESC) VAR lo = TOPN(1, t, [Yes %], ASC) RETURN "A split verdict on policy. " & [Questions Passed (Q1-9)] & " of 9 policy questions passed. Strongest support: " & MAXX(hi, dim_question[ShortName]) & " (" & FORMAT(MAXX(hi, [Yes %]), "0.0%") & " Yes). Weakest: " & MAXX(lo, dim_question[ShortName]) & " (" & FORMAT(MAXX(lo, [Yes %]), "0.0%") & ")."
+		displayFolder: 7 Insights
+		lineageTag: c63373bc-15e9-410c-9a70-8a69493c53be
+
+	measure 'Insight 3' = "Cities vs. the rest. Across Q1-9, Yes took " & FORMAT([Yes % Rest of Alberta (Q1-9)], "0.0%") & " outside Calgary and Edmonton, but " & FORMAT([Yes % Calgary (Q1-9)], "0.0%") & " in Calgary and " & FORMAT([Yes % Edmonton (Q1-9)], "0.0%") & " in Edmonton. The rest of Alberta cast " & FORMAT([Ballot Share Outside Cities], "0%") & " of ballots, enough to carry the policy questions that passed."
+		displayFolder: 7 Insights
+		lineageTag: 86c64e41-78c9-41c6-80a6-50f0372c7990
+
+	measure 'Insight 4' = "How people voted mattered. Special (mail-in) ballots went " & FORMAT(CALCULATE([Q10 Remain %], dim_voting_location[VoteTypeCode] = "VBMHQ"), "0.0%") & " Remain vs. " & FORMAT(CALCULATE([Q10 Remain %], dim_voting_location[VoteTypeCode] = "ORD"), "0.0%") & " on election day, and Yes on Q1-9 ran " & FORMAT(ABS([Special vs Election Day Gap Q1-9 (pts)]), "0") & " points lower among special ballots."
+		displayFolder: 7 Insights
+		lineageTag: ad6b51a2-dcb1-4b0c-8910-ddb9577de257
+
+	measure 'Insight 5' = "One bloc, many questions. Divisions that leaned toward the separation process also voted Yes on the policy questions: the correlation across " & COUNTROWS(dim_electoral_division) & " divisions is " & FORMAT([Separation Correlation], "0.00") & "."
+		displayFolder: 7 Insights
+		lineageTag: b80736b6-0db6-4045-af93-0c3db6042ef3
+
+	measure 'Insight 6' = VAR t = FILTER(ALL(dim_question[QuestionNo], dim_question[ShortName]), dim_question[QuestionNo] <> 10) VAR lo = TOPN(1, t, [Total Votes], ASC) RETURN "Q10 drew the most ballots (" & FORMAT([Q10 Ballots], "#,0") & "). The least-answered question, " & MAXX(lo, dim_question[ShortName]) & ", drew " & FORMAT([Q10 Ballots] - MAXX(lo, [Total Votes]), "#,0") & " fewer, so some voters skipped questions."
+		displayFolder: 7 Insights
+		lineageTag: 0430f7c2-a832-4a63-8640-825ca1968fe4
+
+	measure 'Divisions Won by Yes (Q1-9)' = CALCULATE([Divisions Won by Yes], KEEPFILTERS(dim_question[QuestionNo] <> 10))
+		formatString: 0
+		displayFolder: 1 Votes
+		lineageTag: fed0467f-0fd0-46d5-a08a-9886ee8226b4
+
+	column _placeholder
+		isHidden
+		lineageTag: 8c8847d7-d883-4a5a-af0d-b23bddd27092
+		isNameInferred
+		sourceColumn: [_placeholder]
+
+	partition 'Key Measures' = calculated
+		mode: import
+		source = ROW("_placeholder", BLANK())
+

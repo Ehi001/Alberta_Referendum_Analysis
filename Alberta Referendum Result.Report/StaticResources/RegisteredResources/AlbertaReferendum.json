@@ -1,0 +1,67 @@
+{
+  "name": "Alberta Referendum",
+  "dataColors": [
+    "#2E5A8A",
+    "#E88A4C",
+    "#1A8A99",
+    "#6F8FC4",
+    "#A97BC4",
+    "#4DBDB0",
+    "#24496A",
+    "#7FB8C4",
+    "#C4A35A",
+    "#8E9BAA"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#13293D",
+  "tableAccent": "#1A8A99",
+  "good": "#1A8A99",
+  "bad": "#D9644A",
+  "neutral": "#C4A35A",
+  "textClasses": {
+    "callout": {
+      "fontFace": "Segoe UI Semibold",
+      "color": "#13293D"
+    },
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "color": "#13293D",
+      "fontSize": 13
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "color": "#13293D"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "color": "#5B6B7B",
+      "fontSize": 9
+    }
+  },
+  "visualStyles": {
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#EEF2F6"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#EEF2F6"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    }
+  }
+}

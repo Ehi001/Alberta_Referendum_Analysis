@@ -1,0 +1,68 @@
+table dim_electoral_division
+	lineageTag: cf0c1138-b0d4-4dc1-8c55-9574f99c3c13
+
+	column DivisionCode
+		dataType: int64
+		formatString: 0
+		lineageTag: 4c6768d0-870b-45f7-986e-f96c425badc4
+		summarizeBy: none
+		sourceColumn: DivisionCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column DivisionName
+		dataType: string
+		lineageTag: 636b8d30-d4e5-4349-853e-ae80805c2990
+		summarizeBy: none
+		sourceColumn: DivisionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column DivisionLabel
+		dataType: string
+		lineageTag: 0be2611f-92b1-4fd0-ace8-657df6586968
+		summarizeBy: none
+		sourceColumn: DivisionLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Area
+		dataType: string
+		lineageTag: 6d71f2b2-3e2d-47d1-a0d5-43429aea5de2
+		summarizeBy: none
+		sourceColumn: Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column VotingLocationsReporting
+		dataType: int64
+		formatString: 0
+		lineageTag: d6ec28ae-4f0f-4558-b84f-bbccd59a1d1b
+		summarizeBy: sum
+		sourceColumn: VotingLocationsReporting
+
+		annotation SummarizationSetBy = Automatic
+
+	column VotingLocationsTotal
+		dataType: int64
+		formatString: 0
+		lineageTag: ae1d6f99-4fa4-405a-ba92-dce29be6ef79
+		summarizeBy: sum
+		sourceColumn: VotingLocationsTotal
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_electoral_division = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dim_electoral_division.csv"),[Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"DivisionCode", Int64.Type}, {"DivisionName", type text}, {"DivisionLabel", type text}, {"Area", type text}, {"VotingLocationsReporting", Int64.Type}, {"VotingLocationsTotal", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

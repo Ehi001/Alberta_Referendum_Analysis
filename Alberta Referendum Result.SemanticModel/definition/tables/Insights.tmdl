@@ -1,0 +1,23 @@
+table Insights
+	lineageTag: c146ecd7-c9f3-4db3-a49d-9ddd204ba1a3
+
+	column No
+		dataType: int64
+		formatString: 0
+		lineageTag: e42db54e-c1fe-4c38-b219-ded138cbe4d1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [No]
+
+	column Insight
+		dataType: string
+		lineageTag: fb749012-0df3-42db-b219-36f7626c0c81
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Insight]
+		sortByColumn: No
+
+	partition Insights = calculated
+		mode: import
+		source = UNION(ROW("No", 1, "Insight", [Insight 1]), ROW("No", 2, "Insight", [Insight 2]), ROW("No", 3, "Insight", [Insight 3]), ROW("No", 4, "Insight", [Insight 4]), ROW("No", 5, "Insight", [Insight 5]), ROW("No", 6, "Insight", [Insight 6]))
+

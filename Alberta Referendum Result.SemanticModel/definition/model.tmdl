@@ -1,0 +1,26 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-CA
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DataFolder","dim_question","dim_electoral_division","dim_voting_location","fact_results_by_division","fact_results_by_location"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.146.1254.0 (25.08)+791a7518fadc83da883d79322a2658aff57c8db3
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table dim_question
+ref table dim_electoral_division
+ref table dim_voting_location
+ref table fact_results_by_division
+ref table fact_results_by_location
+ref table 'Key Measures'
+ref table Insights
+
+ref cultureInfo en-US
+

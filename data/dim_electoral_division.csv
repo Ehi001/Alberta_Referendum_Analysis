@@ -1,0 +1,88 @@
+DivisionCode,DivisionName,DivisionLabel,Area,VotingLocationsReporting,VotingLocationsTotal
+01,Calgary-Acadia,01 - Calgary-Acadia,Calgary,57,57
+02,Calgary-Beddington,02 - Calgary-Beddington,Calgary,53,53
+03,Calgary-Bow,03 - Calgary-Bow,Calgary,69,69
+04,Calgary-Buffalo,04 - Calgary-Buffalo,Calgary,78,78
+05,Calgary-Cross,05 - Calgary-Cross,Calgary,48,48
+06,Calgary-Currie,06 - Calgary-Currie,Calgary,56,56
+07,Calgary-East,07 - Calgary-East,Calgary,74,74
+08,Calgary-Edgemont,08 - Calgary-Edgemont,Calgary,57,57
+09,Calgary-Elbow,09 - Calgary-Elbow,Calgary,60,60
+10,Calgary-Falconridge,10 - Calgary-Falconridge,Calgary,51,51
+11,Calgary-Fish Creek,11 - Calgary-Fish Creek,Calgary,59,59
+12,Calgary-Foothills,12 - Calgary-Foothills,Calgary,62,62
+13,Calgary-Glenmore,13 - Calgary-Glenmore,Calgary,59,59
+14,Calgary-Hays,14 - Calgary-Hays,Calgary,58,58
+15,Calgary-Klein,15 - Calgary-Klein,Calgary,53,53
+16,Calgary-Lougheed,16 - Calgary-Lougheed,Calgary,45,45
+17,Calgary-Bhullar-McCall,17 - Calgary-Bhullar-McCall,Calgary,39,39
+18,Calgary-Mountain View,18 - Calgary-Mountain View,Calgary,90,90
+19,Calgary-North,19 - Calgary-North,Calgary,52,52
+20,Calgary-North East,20 - Calgary-North East,Calgary,65,65
+21,Calgary-North West,21 - Calgary-North West,Calgary,58,58
+22,Calgary-Peigan,22 - Calgary-Peigan,Calgary,52,52
+23,Calgary-Shaw,23 - Calgary-Shaw,Calgary,71,71
+24,Calgary-South East,24 - Calgary-South East,Calgary,76,76
+25,Calgary-Varsity,25 - Calgary-Varsity,Calgary,51,51
+26,Calgary-West,26 - Calgary-West,Calgary,54,54
+27,Edmonton-Beverly-Clareview,27 - Edmonton-Beverly-Clareview,Edmonton,49,49
+28,Edmonton-Castle Downs,28 - Edmonton-Castle Downs,Edmonton,57,57
+29,Edmonton-City Centre,29 - Edmonton-City Centre,Edmonton,75,75
+30,Edmonton-Decore,30 - Edmonton-Decore,Edmonton,56,56
+31,Edmonton-Ellerslie,31 - Edmonton-Ellerslie,Edmonton,52,52
+32,Edmonton-Glenora,32 - Edmonton-Glenora,Edmonton,52,52
+33,Edmonton-Gold Bar,33 - Edmonton-Gold Bar,Edmonton,58,58
+34,Edmonton-Highlands-Norwood,34 - Edmonton-Highlands-Norwood,Edmonton,48,48
+35,Edmonton-Manning,35 - Edmonton-Manning,Edmonton,59,59
+36,Edmonton-McClung,36 - Edmonton-McClung,Edmonton,51,51
+37,Edmonton-Meadows,37 - Edmonton-Meadows,Edmonton,61,61
+38,Edmonton-Mill Woods,38 - Edmonton-Mill Woods,Edmonton,53,53
+39,Edmonton-North West,39 - Edmonton-North West,Edmonton,64,64
+40,Edmonton-Riverview,40 - Edmonton-Riverview,Edmonton,53,53
+41,Edmonton-Rutherford,41 - Edmonton-Rutherford,Edmonton,50,50
+42,Edmonton-South,42 - Edmonton-South,Edmonton,88,88
+43,Edmonton-South West,43 - Edmonton-South West,Edmonton,76,76
+44,Edmonton-Strathcona,44 - Edmonton-Strathcona,Edmonton,50,50
+45,Edmonton-West Henday,45 - Edmonton-West Henday,Edmonton,59,59
+46,Edmonton-Whitemud,46 - Edmonton-Whitemud,Edmonton,51,51
+47,Airdrie-Cochrane,47 - Airdrie-Cochrane,Rest of Alberta,92,92
+48,Airdrie-East,48 - Airdrie-East,Rest of Alberta,73,73
+49,Athabasca-Barrhead-Westlock,49 - Athabasca-Barrhead-Westlock,Rest of Alberta,62,62
+50,Banff-Kananaskis,50 - Banff-Kananaskis,Rest of Alberta,64,64
+51,Bonnyville-Cold Lake-St. Paul,51 - Bonnyville-Cold Lake-St. Paul,Rest of Alberta,74,74
+52,Brooks-Medicine Hat,52 - Brooks-Medicine Hat,Rest of Alberta,71,71
+53,Camrose,53 - Camrose,Rest of Alberta,64,64
+54,Cardston-Siksika,54 - Cardston-Siksika,Rest of Alberta,68,68
+55,Central Peace-Notley,55 - Central Peace-Notley,Rest of Alberta,60,60
+56,Chestermere-Strathmore,56 - Chestermere-Strathmore,Rest of Alberta,69,71
+57,Cypress-Medicine Hat,57 - Cypress-Medicine Hat,Rest of Alberta,59,59
+58,Drayton Valley-Devon,58 - Drayton Valley-Devon,Rest of Alberta,68,68
+59,Drumheller-Stettler,59 - Drumheller-Stettler,Rest of Alberta,71,71
+60,Fort McMurray-Lac La Biche,60 - Fort McMurray-Lac La Biche,Rest of Alberta,63,63
+61,Fort McMurray-Wood Buffalo,61 - Fort McMurray-Wood Buffalo,Rest of Alberta,26,40
+62,Fort Saskatchewan-Vegreville,62 - Fort Saskatchewan-Vegreville,Rest of Alberta,82,82
+63,Grande Prairie,63 - Grande Prairie,Rest of Alberta,51,52
+64,Grande Prairie-Wapiti,64 - Grande Prairie-Wapiti,Rest of Alberta,73,81
+65,Highwood,65 - Highwood,Rest of Alberta,112,112
+66,Innisfail-Sylvan Lake,66 - Innisfail-Sylvan Lake,Rest of Alberta,73,73
+67,Lac Ste. Anne-Parkland,67 - Lac Ste. Anne-Parkland,Rest of Alberta,75,75
+68,Lacombe-Ponoka,68 - Lacombe-Ponoka,Rest of Alberta,72,72
+69,Leduc-Beaumont,69 - Leduc-Beaumont,Rest of Alberta,68,68
+70,Lesser Slave Lake,70 - Lesser Slave Lake,Rest of Alberta,45,45
+71,Lethbridge-East,71 - Lethbridge-East,Rest of Alberta,69,69
+72,Lethbridge-West,72 - Lethbridge-West,Rest of Alberta,67,67
+73,Livingstone-Macleod,73 - Livingstone-Macleod,Rest of Alberta,94,94
+74,Maskwacis-Wetaskiwin,74 - Maskwacis-Wetaskiwin,Rest of Alberta,56,56
+75,Morinville-St. Albert,75 - Morinville-St. Albert,Rest of Alberta,64,64
+76,Olds-Didsbury-Three Hills,76 - Olds-Didsbury-Three Hills,Rest of Alberta,71,71
+77,Peace River,77 - Peace River,Rest of Alberta,69,69
+78,Red Deer-North,78 - Red Deer-North,Rest of Alberta,64,64
+79,Red Deer-South,79 - Red Deer-South,Rest of Alberta,73,73
+80,Rimbey-Rocky Mountain House-Sundre,80 - Rimbey-Rocky Mountain House-Sundre,Rest of Alberta,85,85
+81,Sherwood Park,81 - Sherwood Park,Rest of Alberta,61,61
+82,Spruce Grove-Stony Plain,82 - Spruce Grove-Stony Plain,Rest of Alberta,66,66
+83,St. Albert,83 - St. Albert,Rest of Alberta,60,60
+84,Strathcona-Sherwood Park,84 - Strathcona-Sherwood Park,Rest of Alberta,63,63
+85,Taber-Warner,85 - Taber-Warner,Rest of Alberta,70,70
+86,Vermilion-Lloydminster-Wainwright,86 - Vermilion-Lloydminster-Wainwright,Rest of Alberta,66,66
+87,West Yellowhead,87 - West Yellowhead,Rest of Alberta,73,73
